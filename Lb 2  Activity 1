@@ -1,0 +1,9 @@
+CREATE PROCEDURE number(num1 INT,num2 INT)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+   RAISE NOTICE 'sum is  :%',num1+num2 ;
+END
+$$;
+
+CALL number(2,4);
