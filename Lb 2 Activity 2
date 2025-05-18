@@ -1,0 +1,12 @@
+create or replace procedure return_full_name1(first_name TEXT, last_name TEXT)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+  full_name TEXT;
+BEGIN
+  full_name = first_name || ' ' || last_name;
+  RAISE NOTICE 'Full name is:%',full_name;
+END;
+$$;
+
+call return_full_name1 ('Amal','Perera');
