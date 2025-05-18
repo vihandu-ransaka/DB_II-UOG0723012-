@@ -1,0 +1,18 @@
+create or replace PROCEDURE double_value (INOUT salary FLOAT)
+LANGUAGE plpgsql
+AS 
+$$
+BEGIN
+salary = salary*2;
+END;
+$$;
+
+DO 
+$$
+DECLARE
+salary FLOAT = 25000;
+BEGIN
+call double_value(salary);
+RAISE NOTICE 'Your Updated salary is Rs.%',salary;
+end;
+$$;
