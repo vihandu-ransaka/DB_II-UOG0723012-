@@ -1,0 +1,14 @@
+CREATE PROCEDURE update_product_stock(
+    IN input_product_id INT,
+    IN new_stock_quantity INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE products
+    SET stock_quantity = new_stock_quantity
+    WHERE product_id = input_product_id;
+END;
+$$;
+
+CALL update_product_stock(1, 200);
