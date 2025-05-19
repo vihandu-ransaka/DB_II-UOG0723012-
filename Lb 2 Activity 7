@@ -1,0 +1,12 @@
+CREATE PROCEDURE delete_product(
+    IN input_product_id INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    DELETE FROM products
+    WHERE product_id = input_product_id;
+END;
+$$;
+
+CALL delete_product(1);
