@@ -1,0 +1,22 @@
+CREATE PROCEDURE calculate_total_stock_value_of_product(
+    IN input_product_id INT
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    total_value NUMERIC;
+BEGIN
+    SELECT price * stock_quantity
+    INTO total_value
+    FROM products
+    WHERE product_id = input_product_id;
+
+    IF total_value IS NULL THEN
+        RAISE NOTICE 'Product with ID % not found.', input_product_id;
+    ELSE
+        RAISE NOTICE 'Total stock value for product ID % is %', input_product_id, total_value;
+    END IF;
+END;
+$$;
+
+CALL calculate_total_stock_value_of_product(2);
