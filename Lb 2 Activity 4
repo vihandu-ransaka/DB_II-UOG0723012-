@@ -1,0 +1,21 @@
+--STEP 01--
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price NUMERIC(10, 2) NOT NULL,
+    stock_quantity INT NOT NULL
+);
+
+--STEP 02--
+CREATE PROCEDURE add_product(
+    IN product_name VARCHAR,
+    IN product_price NUMERIC,
+    IN product_stock INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO products (name, price, stock_quantity)
+    VALUES (product_name, product_price, product_stock);
+END;
+$$;
