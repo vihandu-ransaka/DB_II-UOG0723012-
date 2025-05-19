@@ -1,0 +1,26 @@
+CREATE PROCEDURE get_product_by_id(
+    IN input_product_id INT,
+    OUT product_name VARCHAR,
+    OUT product_price NUMERIC,
+    OUT product_stock INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    SELECT name, price, stock_quantity
+    INTO product_name, product_price, product_stock
+    FROM products
+    WHERE product_id = input_product_id;
+END;
+$$;
+
+DO $$
+DECLARE
+    pname VARCHAR;
+    pprice NUMERIC;
+    pstock INT;
+BEGIN
+    CALL get_product_by_id(1, pname, pprice, pstock);
+    RAISE NOTICE 'Product: %, Price: %, Stock: %', pname, pprice, pstock;
+END;
+$$;
